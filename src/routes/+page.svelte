@@ -2,36 +2,55 @@
     let name = 'Venco'; // In case i want to change my username basically everywhere i guess
     let gravatarsrc = 'https://gravatar.com/avatar/9f5b5ad2d2cd1bca67ec2702f8cbabf38bf1d10140bd7266ab15fdd4b2311fda?s=128';
 </script>
-<div class="container">
-    <div class="tl"></div>
-    <div class="r"></div>
-    <div class="bl"></div>
+
+<div class="tl">
+    <div class="box">
+
+    </div>
+</div>
+<div class="r">
+    <div class="box">
+
+    </div>
+</div>
+<div class="bl">
+    <div class="box">
+        
+    </div>
 </div>
 
 <style>
-    .container {
-        display: flex;
-        width: 100%;
-        height: 100vh;
-        gap: 20px;
+    
+    .tl {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 20%;
         padding: 20px;
     }
-    .tl {
-        justify-content: flex-start;
-        flex: 1;
-        align-items: flex-start;
-        background-color: blue;
-    }
     .r {
-        flex: 1;
-        background-color: rgb(255, 0, 64);
-        justify-content: flex-end;
-        border: 2px solid black;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50%;
+        height: 100%;
+        padding: 20px;
     }
     .bl {
-        flex: 1;
-        justify-content: flex-start;
-        align-items: flex-end;
-        background-color: rgb(0, 255, 76);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50%;
+        height: 80%;
+        padding: 20px;
+    }
+    .box {
+        outline: 4px;
+        outline-style: solid;
+        outline-color: #9683EC;
+        background-color: #000000d3;
+        min-width: 100%;
+        min-height: 100%;
     }
 </style>
