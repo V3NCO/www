@@ -1,6 +1,11 @@
 <script lang="ts">
+    import { defaultt } from './values.js';
     let name = 'Venco'; // In case i want to change my username basically everywhere i guess
     let gravatarsrc = 'https://gravatar.com/avatar/9f5b5ad2d2cd1bca67ec2702f8cbabf38bf1d10140bd7266ab15fdd4b2311fda?s=128';
+
+    let termInput = '';
+    let termHistory = [];
+    let rightContent = defaultt;
 </script>
 
 <div class="tl">
@@ -12,7 +17,7 @@
 </div>
 <div class="r">
     <div class="box">
-        
+        {@html rightContent}
     </div>
 </div>
 <div class="bl">
@@ -23,11 +28,11 @@
 
 <style>
     .image-container {
-        display: flex; /* Make it a flex container */
-        justify-content: flex-start; /* Horizontal alignment - keep it left-aligned */
-        align-items: center; /* This centers content vertically */
+        display: flex;
+        justify-content: flex-start;
+        align-items: center; 
         width: 100%;
-        height: 100%; /* Take up full height of parent */
+        height: 100%; 
     }
     .tl {
         position: absolute;

@@ -24,3 +24,5 @@ vite.config.ts.timestamp-*
 
 # Testing files i guess
 testfile
+
+Website.code-workspace
