@@ -12,19 +12,21 @@
             termHistory = [...termHistory, `<p class="command">> ${termInput}</p>`];
             let command = termInput.trim().toLowerCase();
             termInput = '';
-            /* I'm about to make a bunch of if statements, if someone hates me for it because it isn't the best way, teach me and stop complaining */
-            if (command === 'help') {
-                termHistory = [...termHistory, "<p class='command'>Available commands:</p> <style>.command { color: #DDD; }</style>"];
-            } else if (command === 'about') {
-                termHistory = [...termHistory, `<p class='about'>This is ${name}'s terminal. You can type commands to interact with it.</p> <style>.about { color: #9683EC; }</style>`];
-            } else if (command === 'clear') {
-                termHistory = [];
-            } else {
-                termHistory = [...termHistory, `<p class='error'>Unknown command: ${command}</p> <style>.error { color: red; }</style>`];
+            switch (command) {
+                case 'help':
+                    termHistory = [...termHistory, "<p class='command'>Available commands: help, about, clear</p> <style>.command { color: #DDD; }</style>"];
+                    break;
+                case 'about':
+                    termHistory = [...termHistory, `<p class='about'></p> <style>.about { color: #9683EC; }</style>`];
+                    break;
+                case 'clear':
+                    termHistory = ['<p class="first">Terminal Cleared. Type "help" for available commands.</p> <style>.first { color: #9683EC; } .command { color: #DDD; }</style>'];
+                    break;
+                default:
+                    termHistory = [...termHistory, `<p class='error'>Unknown command: ${command}</p> <style>.error { color: red; }</style>`];
             }
         }
     }
-
 </script>
 
 <div class="tl">
@@ -40,11 +42,11 @@
     </div>
 </div>
 <div class="bl">
-    <div class="box">
+    <div class="box terminal-box">
         <div class="terminal">
-            <div class="terminal-history">
+            <div class="term-history">
                 {#each termHistory as line} <!-- Yes, i actually want people to write HTML as wrong command, i think it's funny -->
-                    <div class="terminal-line">{@html line}</div>
+                    <div class="term-line">{@html line}</div>
                 {/each}
             </div>
             <div class="term-input-contain">
@@ -79,6 +81,7 @@
         height: 20%;
         background-color: #494949;
         padding: 15px;
+        box-sizing: border-box;
     }
     .r {
         position: absolute;
@@ -88,6 +91,7 @@
         height: 100%;
         background-color: #494949;
         padding: 15px;
+        box-sizing: border-box;
     }
     .bl {
         position: absolute;
@@ -97,6 +101,7 @@
         height: 80%;
         background-color: #494949;
         padding: 15px;
+        box-sizing: border-box;
     }
     .box {
         display: flex;
@@ -104,9 +109,9 @@
         outline-style: solid;
         outline-color: #9683EC;
         background-color: #292435d3;
-        align-items: center;
-        min-width: 100%;
-        min-height: 100%;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
     }
     .pfp {
         border: 2px solid #9683EC;
@@ -115,5 +120,63 @@
         height: auto;
         max-width: 100%;
         margin: 20px; 
+    }
+    .terminal-box {
+        flex-direction: column;
+        padding: 0;
+        overflow: hidden;
+        align-items: stretch;
+    }
+    .terminal {
+        font-family: 'Courier New', monospace;
+        color: #ffffff;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+    }
+    .term-history {
+        flex: 1;
+        overflow-y: auto;
+        padding: 15px;
+        padding-bottom: 60px; /* Space for the input field */
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .term-line {
+        margin-bottom: 5px;
+        word-break: break-word;
+    }
+    .term-input-contain {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 15px;
+        background-color: #292435d3;
+        border-top: 1px solid rgba(150, 131, 236, 0.3);
+        box-sizing: border-box;
+    }
+    .term-input-line {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+    .prompt {
+        margin-right: 8px;
+        color: #DDD;
+        font-weight: bold;
+    }
+    .term-input {
+        background: transparent;
+        border: none;
+        color: #DDD;
+        font-family: 'Courier New', monospace;
+        flex-grow: 1;
+        outline: none;
+        font-size: 1em;
     }
 </style>

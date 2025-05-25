@@ -25,4 +25,6 @@ vite.config.ts.timestamp-*
 # Testing files i guess
 testfile
 
+#Workspace
 Website.code-workspace
+.wakatime-project
