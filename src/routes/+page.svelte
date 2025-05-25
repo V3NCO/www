@@ -1,11 +1,30 @@
-<script lang="ts">
+<script>
     import { defaultt } from './values.js';
     let name = 'Venco'; // In case i want to change my username basically everywhere i guess
     let gravatarsrc = 'https://gravatar.com/avatar/9f5b5ad2d2cd1bca67ec2702f8cbabf38bf1d10140bd7266ab15fdd4b2311fda?s=128';
 
     let termInput = '';
-    let termHistory = [];
+    let termHistory = ["<p class='first'>Testing styles !</p> <style>.first { color: #9683EC; } .command { color: #DDD; }</style>"];
     let rightContent = defaultt;
+
+    function handleCommand(e) {
+        if (e.key === 'Enter' && termInput.trim()) {        
+            termHistory = [...termHistory, `<p class="command">> ${termInput}</p>`];
+            let command = termInput.trim().toLowerCase();
+            termInput = '';
+            /* I'm about to make a bunch of if statements, if someone hates me for it because it isn't the best way, teach me and stop complaining */
+            if (command === 'help') {
+                termHistory = [...termHistory, "<p class='command'>Available commands:</p> <style>.command { color: #DDD; }</style>"];
+            } else if (command === 'about') {
+                termHistory = [...termHistory, `<p class='about'>This is ${name}'s terminal. You can type commands to interact with it.</p> <style>.about { color: #9683EC; }</style>`];
+            } else if (command === 'clear') {
+                termHistory = [];
+            } else {
+                termHistory = [...termHistory, `<p class='error'>Unknown command: ${command}</p> <style>.error { color: red; }</style>`];
+            }
+        }
+    }
+
 </script>
 
 <div class="tl">
@@ -22,7 +41,25 @@
 </div>
 <div class="bl">
     <div class="box">
-        
+        <div class="terminal">
+            <div class="terminal-history">
+                {#each termHistory as line} <!-- Yes, i actually want people to write HTML as wrong command, i think it's funny -->
+                    <div class="terminal-line">{@html line}</div>
+                {/each}
+            </div>
+            <div class="term-input-contain">
+                <div class="term-input-line">
+                    <span class="prompt"></span>
+                    <input 
+                        type="text" 
+                        bind:value={termInput} 
+                        on:keydown={handleCommand} 
+                        class="term-input"
+                        placeholder="Type a command..."
+                    />
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
