@@ -2,7 +2,7 @@
 
 
 <script>
-    import { defaultt } from './values.js';
+    import { defaultt } from '../values.js';
     let name = 'Venco'; // In case i want to change my username basically everywhere i guess
     let gravatarsrc = 'https://gravatar.com/avatar/9f5b5ad2d2cd1bca67ec2702f8cbabf38bf1d10140bd7266ab15fdd4b2311fda?s=128';
 
