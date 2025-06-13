@@ -4,6 +4,7 @@
 <script>
     import { defaultt } from '../values.js';
     import Github_logo from '../lib/assets/icons/github.svelte';
+    import Discord_logo from '../lib/assets/icons/discord.svelte';
     let name = 'Venco'; // In case i want to change my username basically everywhere i guess
     let gravatarsrc = 'https://gravatar.com/avatar/9f5b5ad2d2cd1bca67ec2702f8cbabf38bf1d10140bd7266ab15fdd4b2311fda?s=128';
     let termInput = '';
@@ -12,7 +13,7 @@
 
     function handleCommand(e) {
         if (e.key === 'Enter' && termInput.trim()) {        
-            termHistory = [...termHistory, `<p class="command">> ${termInput}</p>`];
+            termHistory = [...termHistory, `<p class="command">-> ${termInput}</p>`];
             let command = termInput.trim().toLowerCase();
             termInput = '';
             switch (command) {
@@ -67,8 +68,13 @@
         <div class="links">
             <h2 class="jb-mono"><strong>Links</strong></h2>
             <div class="link-item" style="margin-top: 15px;">
-                <Github_logo/>
+                <Github_logo style="color: #FFFFFF;"/>
                 <span style="font-weight: 250; font-size: 20px;"><a href="https://github.com/v3nco" target="_blank" style="color: #FFFFFF">GitHub - <span style="color: hsl(210, 77%, 53%)">@v3nco</a></span>
+            </div>
+            <hr style="border: 1px solid #9683EC; margin: 10px 0; width: 100%; box-sizing: border-box;">
+            <div class="link-item" style="margin-top: 5px;">
+                <Discord_logo style="color: #FFFFFF;"/>
+                <span style="font-weight: 250; font-size: 20px;"><a href="https://discord.com/users/1115935726413041695" target="_blank" style="color: #FFFFFF">Discord - <span style="color: hsl(210, 77%, 53%)">@v3ncodev</a></span>
             </div>
         </div>
     </div>
@@ -233,6 +239,7 @@
         flex-direction: column;
         gap: 10px;
         margin: 20px;
+        width: calc(100% - 40px); /* Subtract the left and right margins */
     }
     .link-item {
         display: flex;
