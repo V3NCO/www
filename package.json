@@ -12,7 +12,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
-		"gh-pages": "NODE_ENV=production yarn build && touch ~/Projects/www/www/build/.nojekyll && npx gh-pages -d build"
+		"gh-pages": "NODE_ENV=production yarn build && touch ./build/.nojekyll && touch  ./build/CNAME && echo 'v3nco.dev' > ./build/CNAME && npx gh-pages -d build"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
