@@ -26,7 +26,7 @@
                     termHistory = ['<p class="command">Terminal Cleared. Type "help" for available commands.</p> <style>.command { color: #DDD; }</style>'];
                     break;
                 case 'whoami':
-                    termHistory = [...termHistory, '<p class="command">Great question. Who are you ?</p>>'];
+                    termHistory = [...termHistory, '<p class="command">Great question. Who are you ?</p>'];
                     break;
                 case 'links':
                     termHistory = [...termHistory, '<p class="command">Here are some of my profiles on platforms!</p>'];
@@ -49,6 +49,12 @@
     <div class="box">
         <div class="image-container">
             <img src={gravatarsrc} alt="{name}'s profile picture : Basil from omori with happy emotion in combat state" width="128" height="128" class="pfp"/>
+            <div class="presentation">
+                <p class="jb-mono">Hi, I'm <strong>{name}</strong>, I'm </p>
+                <p class="jb-mono">~~ Welcome to my corner of the internet! ~~</p>
+                <p class="jb-mono"> This website is still under construction</p>
+                <p class="jb-mono"> and i'm doing this to learn web development.</p>
+            </div>
         </div>
     </div>
 </div>
@@ -203,5 +209,13 @@
         flex-grow: 1;
         outline: none;
         font-size: 1em;
+    }
+    .jb-mono {
+        font-family: 'JetBrains Mono', monospace;
+        color: #ffffff;
+    }
+    .presentation {
+        line-height: 1.8;
+        color: #DDD;
     }
 </style>
