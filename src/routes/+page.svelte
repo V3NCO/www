@@ -3,9 +3,9 @@
 
 <script>
     import { defaultt } from '../values.js';
+    import Github_logo from '../lib/assets/icons/github.svelte';
     let name = 'Venco'; // In case i want to change my username basically everywhere i guess
     let gravatarsrc = 'https://gravatar.com/avatar/9f5b5ad2d2cd1bca67ec2702f8cbabf38bf1d10140bd7266ab15fdd4b2311fda?s=128';
-
     let termInput = '';
     let termHistory = ["<p class='command'>Welcome to Venco's website, Type 'help' to list commands.</p> <style>.command { color: #DDD; }</style>"];
     let rightContent = defaultt;
@@ -34,6 +34,9 @@
                 case 'awesome':
                     termHistory = [...termHistory, '<p class="command">Awesome !</p> <style>keyframes Color{0%{color:#A0D468;}20%{color:#4FC1E9;}40%{color:#FFCE54;}60%{color:#FC6E51;}80%{color:#ED5565;}100%{color:#AC92EC;}}@-moz-keyframes Color{0%{color:#A0D468;}20%{color:#4FC1E9;}40%{color:#FFCE54;}60%{color:#FC6E51;}80%{color:#ED5565;}100%{color:#AC92EC;}}@-webkit-keyframes Color{0%{color:#A0D468;}20%{color:#4FC1E9;}40%{color:#FFCE54;}60%{color:#FC6E51;}80%{color:#ED5565;}100%{color:#AC92EC;}} .command{animation: Color 4s linear infinite; -webkit-animation: Color 4s ease-in-out infinite;}</style>'];
                     break;
+                case 'mobile':
+                    termHistory = [...termHistory, "<p class='command'>I have no idea of how I am going to implement mobile to this considering I'm struggling with desktop</p>"];
+                    break;
                 default:
                     termHistory = [...termHistory, `<p class='error'>Unknown command: ${command}</p> <style>.error { color: red; }</style>`];
             }
@@ -61,7 +64,13 @@
 <div class="r">
     <div class="box">
         <!-- {@html rightContent} -->
-        
+        <div class="links">
+            <h2 class="jb-mono"><strong>Links</strong></h2>
+            <div class="link-item" style="margin-top: 15px;">
+                <Github_logo/>
+                <span style="font-weight: 250; font-size: 20px;"><a href="https://github.com/v3nco" target="_blank" style="color: #FFFFFF">GitHub - <span style="color: hsl(210, 77%, 53%)">@v3nco</a></span>
+            </div>
+        </div>
     </div>
 </div>
 <div class="bl">
@@ -173,7 +182,7 @@
         flex: 1;
         overflow-y: auto;
         padding: 15px;
-        padding-bottom: 60px; /* Space for the input field */
+        padding-bottom: 60px;
         width: 100%;
         box-sizing: border-box;
     }
@@ -217,5 +226,22 @@
     .presentation {
         line-height: 1.8;
         color: #DDD;
+    }
+    /* Links Page - To integrate in component once done here */
+    .links{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 20px;
+    }
+    .link-item {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 8px;
+        align-items: flex-end;
+    }
+    .link-item a:hover {
+        text-decoration: underline;
     }
 </style>
