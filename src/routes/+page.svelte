@@ -3,8 +3,13 @@
 
 <script>
     import { defaultt } from '../values.js';
-    import Github_logo from '../lib/assets/icons/github.svelte';
-    import Discord_logo from '../lib/assets/icons/discord.svelte';
+    import Github_logo from '$lib/assets/icons/github.svelte';
+    import Discord_logo from '$lib/assets/icons/discord.svelte';
+    import Hackclub_flag from '$lib/assets/icons/hackclub-flag.svelte';
+    import HackclubIcon from '$lib/assets/icons/hackclub-icon.svelte';
+    import HackclubIconMono from '$lib/assets/icons/hackclub-icon-mono.svelte';
+    import HackclubIconProgress from '$lib/assets/icons/hackclub-icon-progress.svelte';
+    import Steam_logo from '$lib/assets/icons/steam.svelte';
     let name = 'Venco'; // In case i want to change my username basically everywhere i guess
     let gravatarsrc = 'https://gravatar.com/avatar/9f5b5ad2d2cd1bca67ec2702f8cbabf38bf1d10140bd7266ab15fdd4b2311fda?s=128';
     let termInput = '';
@@ -75,6 +80,16 @@
             <div class="link-item" style="margin-top: 5px;">
                 <Discord_logo style="color: #FFFFFF;"/>
                 <span style="font-weight: 250; font-size: 20px;"><a href="https://discord.com/users/1115935726413041695" target="_blank" style="color: #FFFFFF">Discord - <span style="color: hsl(210, 77%, 53%)">@v3ncodev</a></span>
+            </div>
+            <hr style="border: 1px solid #9683EC; margin: 10px 0; width: 100%; box-sizing: border-box;">
+            <div class="link-item" style="margin-top: 5px;">
+                <HackclubIconProgress/>
+                <span style="font-weight: 250; font-size: 20px;"><a href="https://hackclub.slack.com/team/U08L7671TDG" target="_blank" style="color: #FFFFFF">Hackclub Slack - <span style="color: hsl(210, 77%, 53%)">@Venco</a></span>
+            </div>
+            <hr style="border: 1px solid #9683EC; margin: 10px 0; width: 100%; box-sizing: border-box;">
+            <div class="link-item" style="margin-top: 5px;">
+                <Steam_logo/>
+                <span style="font-weight: 250; font-size: 20px;"><a href="https://steamcommunity.com/id/V3NCO/" target="_blank" style="color: #FFFFFF">Steam - <span style="color: hsl(210, 77%, 53%)">@V3NCO</a></span>
             </div>
         </div>
     </div>
