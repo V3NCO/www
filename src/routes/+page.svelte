@@ -2,19 +2,16 @@
 
 
 <script>
-    import { defaultt } from '../values.js';
-    import Github_logo from '$lib/assets/icons/github.svelte';
-    import Discord_logo from '$lib/assets/icons/discord.svelte';
-    import Hackclub_flag from '$lib/assets/icons/hackclub-flag.svelte';
-    import HackclubIcon from '$lib/assets/icons/hackclub-icon.svelte';
-    import HackclubIconMono from '$lib/assets/icons/hackclub-icon-mono.svelte';
-    import HackclubIconProgress from '$lib/assets/icons/hackclub-icon-progress.svelte';
-    import Steam_logo from '$lib/assets/icons/steam.svelte';
+    import LinksPage from '$lib/right_content/links.svelte';
     let name = 'Venco'; // In case i want to change my username basically everywhere i guess
     let gravatarsrc = 'https://gravatar.com/avatar/9f5b5ad2d2cd1bca67ec2702f8cbabf38bf1d10140bd7266ab15fdd4b2311fda?s=128';
     let termInput = '';
     let termHistory = ["<p class='command'>Welcome to Venco's website, Type 'help' to list commands.</p> <style>.command { color: #DDD; }</style>"];
-    let rightContent = defaultt;
+    let currentPage = null;
+
+    const pageComponents = {
+        'links': LinksPage
+    };
 
     function handleCommand(e) {
         if (e.key === 'Enter' && termInput.trim()) {        
@@ -30,12 +27,14 @@
                     break;
                 case 'clear':
                     termHistory = ['<p class="command">Terminal Cleared. Type "help" for available commands.</p> <style>.command { color: #DDD; }</style>'];
+                    currentPage = null;
                     break;
                 case 'whoami':
                     termHistory = [...termHistory, '<p class="command">Great question. Who are you ?</p>'];
                     break;
                 case 'links':
                     termHistory = [...termHistory, '<p class="command">Here are some of my profiles on platforms!</p>'];
+                    currentPage = 'links';
                     break;
                 case 'awesome':
                     termHistory = [...termHistory, '<p class="command">Awesome !</p> <style>keyframes Color{0%{color:#A0D468;}20%{color:#4FC1E9;}40%{color:#FFCE54;}60%{color:#FC6E51;}80%{color:#ED5565;}100%{color:#AC92EC;}}@-moz-keyframes Color{0%{color:#A0D468;}20%{color:#4FC1E9;}40%{color:#FFCE54;}60%{color:#FC6E51;}80%{color:#ED5565;}100%{color:#AC92EC;}}@-webkit-keyframes Color{0%{color:#A0D468;}20%{color:#4FC1E9;}40%{color:#FFCE54;}60%{color:#FC6E51;}80%{color:#ED5565;}100%{color:#AC92EC;}} .command{animation: Color 4s linear infinite; -webkit-animation: Color 4s ease-in-out infinite;}</style>'];
@@ -69,29 +68,11 @@
 </div>
 <div class="r">
     <div class="box">
-        <!-- {@html rightContent} -->
-        <div class="links">
-            <h2 class="jb-mono"><strong>Links</strong></h2>
-            <div class="link-item" style="margin-top: 15px;">
-                <Github_logo style="color: #FFFFFF;"/>
-                <span style="font-weight: 250; font-size: 20px;"><a href="https://github.com/v3nco" target="_blank" style="color: #FFFFFF">GitHub - <span style="color: hsl(210, 77%, 53%)">@v3nco</a></span>
-            </div>
-            <hr style="border: 1px solid #9683EC; margin: 10px 0; width: 100%; box-sizing: border-box;">
-            <div class="link-item" style="margin-top: 5px;">
-                <Discord_logo style="color: #FFFFFF;"/>
-                <span style="font-weight: 250; font-size: 20px;"><a href="https://discord.com/users/1115935726413041695" target="_blank" style="color: #FFFFFF">Discord - <span style="color: hsl(210, 77%, 53%)">@v3ncodev</a></span>
-            </div>
-            <hr style="border: 1px solid #9683EC; margin: 10px 0; width: 100%; box-sizing: border-box;">
-            <div class="link-item" style="margin-top: 5px;">
-                <HackclubIconProgress/>
-                <span style="font-weight: 250; font-size: 20px;"><a href="https://hackclub.slack.com/team/U08L7671TDG" target="_blank" style="color: #FFFFFF">Hackclub Slack - <span style="color: hsl(210, 77%, 53%)">@Venco</a></span>
-            </div>
-            <hr style="border: 1px solid #9683EC; margin: 10px 0; width: 100%; box-sizing: border-box;">
-            <div class="link-item" style="margin-top: 5px;">
-                <Steam_logo/>
-                <span style="font-weight: 250; font-size: 20px;"><a href="https://steamcommunity.com/id/V3NCO/" target="_blank" style="color: #FFFFFF">Steam - <span style="color: hsl(210, 77%, 53%)">@V3NCO</a></span>
-            </div>
-        </div>
+        {#if pageComponents[currentPage]}
+            <svelte:component this={pageComponents[currentPage]} />
+        {:else}
+            <p class="jb-mono" style="margin: 20px; color: #DDD;">Use the terminal to display content here.</p>
+        {/if}
     </div>
 </div>
 <div class="bl">
@@ -247,23 +228,5 @@
     .presentation {
         line-height: 1.8;
         color: #DDD;
-    }
-    /* Links Page - To integrate in component once done here */
-    .links{
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin: 20px;
-        width: calc(100% - 40px); /* Subtract the left and right margins */
-    }
-    .link-item {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        gap: 8px;
-        align-items: flex-end;
-    }
-    .link-item a:hover {
-        text-decoration: underline;
     }
 </style>

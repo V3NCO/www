@@ -1,1 +1,0 @@
-export const defaultt = '<p class="lol">value1</p> <style>.lol { color: red; }</style>';
