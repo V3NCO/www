@@ -1,11 +1,11 @@
 <script>
     import Github_logo from '$lib/assets/icons/github.svelte';
-    import Hackclub_flag from '$lib/assets/icons/hackclub-flag.svelte';
-    import HackclubIcon from '$lib/assets/icons/hackclub-icon.svelte';
     import HackclubIconMono from '$lib/assets/icons/hackclub-icon-mono.svelte';
     import HackclubIconProgress from '$lib/assets/icons/hackclub-icon-progress.svelte';
     import Steam_logo from '$lib/assets/icons/steam.svelte';
     import Discord_logo from '$lib/assets/icons/discord.svelte';
+    import Bluesky_logo from '$lib/assets/icons/bluesky.svelte';
+    import Email_icon from '../assets/icons/email.svelte';
 </script>
 
 
@@ -29,6 +29,16 @@
     <div class="link-item" style="margin-top: 5px;">
         <Steam_logo/>
         <span style="font-weight: 250; font-size: 20px;"><a href="https://steamcommunity.com/id/V3NCO/" target="_blank" style="color: #FFFFFF">Steam - <span style="color: hsl(210, 77%, 53%)">@V3NCO</a></span>
+    </div>
+    <hr style="border: 1px solid #9683EC; margin: 10px 0; width: 100%; box-sizing: border-box;">
+    <div class="link-item" style="margin-top: 5px;">
+        <Bluesky_logo/>
+        <span style="font-weight: 250; font-size: 20px;"><a href="https://bsky.app/profile/v3nco.dev" target="_blank" style="color: #FFFFFF">Bluesky - <span style="color: hsl(210, 77%, 53%)">@v3nco.dev</a></span>
+    </div>
+    <hr style="border: 1px solid #9683EC; margin: 10px 0; width: 100%; box-sizing: border-box;">
+    <div class="link-item" style="margin-top: 5px;">
+        <Email_icon/>
+        <span style="font-weight: 250; font-size: 20px;"><a href="mailto:v3nco@v3nco.dev" target="_blank" style="color: #FFFFFF">Email - <span style="color: hsl(210, 77%, 53%)">v3nco@v3nco.dev</a></span>
     </div>
 </div>
 
