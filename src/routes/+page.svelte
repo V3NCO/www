@@ -3,6 +3,7 @@
 
 <script>
     import LinksPage from '$lib/right_content/links.svelte';
+    import KeysPage from '$lib/right_content/keys.svelte';
     let name = 'Venco'; // In case i want to change my username basically everywhere i guess
     let gravatarsrc = 'https://gravatar.com/avatar/9f5b5ad2d2cd1bca67ec2702f8cbabf38bf1d10140bd7266ab15fdd4b2311fda?s=128';
     let termInput = '';
@@ -10,7 +11,8 @@
     let currentPage = null;
 
     const pageComponents = {
-        'links': LinksPage
+        'links': LinksPage,
+        'keys': KeysPage
     };
 
     function handleCommand(e) {
@@ -22,12 +24,13 @@
                 case 'help':
                     termHistory = [...termHistory, "<p class='command'>Available commands: help, about, clear</p>"];
                     break;
-                case 'about':
-                    termHistory = [...termHistory, "<p class='command'></p>"];
-                    break;
                 case 'clear':
                     termHistory = ['<p class="command">Terminal Cleared. Type "help" for available commands.</p> <style>.command { color: #DDD; }</style>'];
                     currentPage = null;
+                    break;
+                case 'keys':
+                    termHistory = [...termHistory, '<p class="command">Here are some of my keys!</p>'];
+                    currentPage = 'keys';
                     break;
                 case 'whoami':
                     termHistory = [...termHistory, '<p class="command">Great question. Who are you ?</p>'];
