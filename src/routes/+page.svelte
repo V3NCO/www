@@ -124,7 +124,6 @@
         left: 0;
         width: 50%;
         height: 20%;
-        background-color: #494949;
         padding: 15px;
         box-sizing: border-box;
     }
@@ -134,7 +133,6 @@
         right: 0;
         width: 50%;
         height: 100%;
-        background-color: #494949;
         padding: 15px;
         box-sizing: border-box;
     }
@@ -144,7 +142,6 @@
         left: 0;
         width: 50%;
         height: 80%;
-        background-color: #494949;
         padding: 15px;
         box-sizing: border-box;
     }
