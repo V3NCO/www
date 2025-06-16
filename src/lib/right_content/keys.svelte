@@ -90,8 +90,8 @@
     /* Couldnt get tooltips to work via title, so using css */
 
     .saveyubitooltip {
-    position: relative;
-    cursor: help;
+        position: relative;
+        cursor: help;
     }
 
     .saveyubitooltip:hover::after {
@@ -112,8 +112,8 @@
     }
 
     .laptooltip {
-    position: relative;
-    cursor: help;
+        position: relative;
+        cursor: help;
     }
 
     .laptooltip:hover::after {
