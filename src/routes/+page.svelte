@@ -232,4 +232,6 @@
         line-height: 1.8;
         color: #DDD;
     }
+
+/* Why do the fonts look so bad on chromium :heavysob: ?? */
 </style>
