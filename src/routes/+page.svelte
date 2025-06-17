@@ -15,6 +15,33 @@
         'keys': KeysPage
     };
 
+    // Grabbed from https://github.com/prplwtf/www/blob/main/components/AgeCounter.vue 
+    const birthTimestamp = new Date('2010-01-30T02:00:00Z').getTime(); // Replace with your actual birth date
+    const calculateAge = () => {
+        const now = Date.now();
+        const age = (now - birthTimestamp) / (1000 * 60 * 60 * 24 * 365.25);
+        return age;
+    };
+
+    const formattedAge = calculateAge().toFixed(8);
+
+
+    // I'll be honest i used copilot for this part, i have no idea of how it works
+    import { onMount, onDestroy } from 'svelte';
+                    let age = calculateAge();
+
+                    let interval;
+                    onMount(() => {
+                        interval = setInterval(() => {
+                            age = calculateAge();
+                        }, 100);
+                    });
+
+                    onDestroy(() => {
+                        clearInterval(interval);
+                    });
+
+
     function handleCommand(e) {
         if (e.key === 'Enter' && termInput.trim()) {        
             termHistory = [...termHistory, `<p class="command">-> ${termInput}</p>`];
@@ -61,7 +88,7 @@
         <div class="image-container">
             <img src={gravatarsrc} alt="{name}'s profile picture : Basil from omori with happy emotion in combat state" width="128" height="128" class="pfp"/>
             <div class="presentation">
-                <p class="jb-mono">Hi, I'm <strong>{name}</strong>, I'm </p>
+                <p class="jb-mono">Hi, I'm <strong>{name}</strong>, I'm <span style="color: #AAA;"><strong>{age.toFixed(8)}</strong></span> years old</p>
                 <p class="jb-mono">~~ Welcome to my corner of the internet! ~~</p>
                 <p class="jb-mono"> This website is still under construction</p>
                 <p class="jb-mono"> and i'm doing this to learn web development.</p>
