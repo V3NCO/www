@@ -49,7 +49,16 @@
             termInput = '';
             switch (command) {
                 case 'help':
-                    termHistory = [...termHistory, "<p class='command'>Available commands: help, about, clear</p>"];
+                    termHistory = [
+                        ...termHistory,
+                        "<p class='command'>Available commands:</p>",
+                        "<p class='command'>help - show this message</p>",
+                        "<p class='command'>clear - clear the terminal</p>",
+                        "<p class='command'>keys - show my keys</p>",
+                        "<p class='command'>links - show links to various platforms i'm on</p>",
+                        "<p class='command'>friends - show links to friends websites</p>",
+                        "<p class='command'>88x31 - alias of 'friends'</p>",
+                    ];
                     break;
                 case 'clear':
                     termHistory = ['<p class="command">Terminal Cleared. Type "help" for available commands.</p> <style>.command { color: #DDD; }</style>'];
@@ -79,6 +88,9 @@
                 case '88x31':
                     termHistory = [...termHistory, "<p class='command'>Here are some of my friends 88x31's!</p>"];
                     currentPage = 'friends';
+                    break;
+                case 'ls':
+                    termHistory = [...termHistory, "<p class='command'>For some reason I have this weird reflex where everytime I'm in a terminal I type ls instantly</p>"];
                     break;
                 default:
                     termHistory = [...termHistory, `<p class='error'>Unknown command: ${command}</p> <style>.error { color: red; }</style>`];
