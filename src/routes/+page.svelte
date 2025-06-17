@@ -4,6 +4,7 @@
 <script>
     import LinksPage from '$lib/right_content/links.svelte';
     import KeysPage from '$lib/right_content/keys.svelte';
+    import FriendsPage from '$lib/right_content/friends.svelte';
     let name = 'Venco'; // In case i want to change my username basically everywhere i guess
     let gravatarsrc = 'https://gravatar.com/avatar/9f5b5ad2d2cd1bca67ec2702f8cbabf38bf1d10140bd7266ab15fdd4b2311fda?s=128';
     let termInput = '';
@@ -12,7 +13,8 @@
 
     const pageComponents = {
         'links': LinksPage,
-        'keys': KeysPage
+        'keys': KeysPage,
+        'friends': FriendsPage
     };
 
     // Grabbed from https://github.com/prplwtf/www/blob/main/components/AgeCounter.vue 
@@ -69,6 +71,14 @@
                     break;
                 case 'mobile':
                     termHistory = [...termHistory, "<p class='command'>I have no idea of how I am going to implement mobile to this considering I'm struggling with desktop</p>"];
+                    break;
+                case 'friends':
+                    termHistory = [...termHistory, "<p class='command'>Here are some of my friends 88x31's!</p>"];
+                    currentPage = 'friends';
+                    break;
+                case '88x31':
+                    termHistory = [...termHistory, "<p class='command'>Here are some of my friends 88x31's!</p>"];
+                    currentPage = 'friends';
                     break;
                 default:
                     termHistory = [...termHistory, `<p class='error'>Unknown command: ${command}</p> <style>.error { color: red; }</style>`];
