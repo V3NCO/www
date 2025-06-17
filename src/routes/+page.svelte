@@ -23,8 +23,6 @@
         return age;
     };
 
-    const formattedAge = calculateAge().toFixed(8);
-
 
     // I'll be honest i used copilot for this part, i have no idea of how it works
     import { onMount, onDestroy } from 'svelte';
