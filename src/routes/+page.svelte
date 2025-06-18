@@ -92,6 +92,9 @@
                 case 'ls':
                     termHistory = [...termHistory, "<p class='command'>For some reason I have this weird reflex where everytime I'm in a terminal I type ls instantly</p>"];
                     break;
+                case 'vencord':
+                    termHistory = [...termHistory, "<a href='https://discord.com/channels/1063548024825057451/1192848123387707462/1384626216774012978'><img src='/images/vencord.png'/></a>"];
+                    break;
                 default:
                     termHistory = [...termHistory, `<p class='error'>Unknown command: ${command}</p> <style>.error { color: red; }</style>`];
             }
