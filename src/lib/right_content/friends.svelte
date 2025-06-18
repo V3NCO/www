@@ -29,6 +29,12 @@
         transition: border-color 0.2s ease;
         image-rendering: crisp-edges;
         image-rendering: -webkit-optimize-contrast;
+        image-rendering: pixelated;
+        image-rendering: optimize-contrast;
+        image-rendering: optimizeSpeed;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: -o-crisp-edges;
+        -ms-interpolation-mode: nearest-neighbor;
     }
     
     .friend-button:hover {
