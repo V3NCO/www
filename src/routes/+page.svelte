@@ -25,6 +25,26 @@
         return age;
     };
 
+    function formatUptime(milliseconds) {
+        const totalSeconds = Math.floor(milliseconds / 1000);
+        
+        const years = Math.floor(totalSeconds / (365 * 24 * 60 * 60));
+        const days = Math.floor((totalSeconds % (365 * 24 * 60 * 60)) / (24 * 60 * 60));
+        const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
+        const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+        const seconds = totalSeconds % 60;
+        
+        const parts = [];
+        
+        if (years > 0) parts.push(`${years} year${years !== 1 ? 's' : ''}`);
+        if (days > 0) parts.push(`${days} day${days !== 1 ? 's' : ''}`);
+        if (hours > 0) parts.push(`${hours} hour${hours !== 1 ? 's' : ''}`);
+        if (minutes > 0) parts.push(`${minutes} minute${minutes !== 1 ? 's' : ''}`);
+        if (seconds > 0 || parts.length === 0) parts.push(`${seconds} second${seconds !== 1 ? 's' : ''}`);
+        
+        return parts.join(' ');
+    }
+
 
     // I'll be honest i used copilot for this part, i have no idea of how it works
     import { onMount, onDestroy } from 'svelte';
@@ -92,8 +112,28 @@
                 case 'ls':
                     termHistory = [...termHistory, "<p class='command'>For some reason I have this weird reflex where everytime I'm in a terminal I type ls instantly</p>"];
                     break;
+                case 'hyfetch':
+                    termHistory.pop()
+                    termInput = 'hyfetch rainbow';
+                    handleCommand({ key: 'Enter' });
+                    break;
                 default:
+                    if(command.indexOf('hyfetch ') === 0) {
+                        const hyfetchArgs = command.replace('hyfetch ', '').trim();
+                        termHistory = [
+                            ...termHistory,
+                            `<p class='command'>venco@www</p>`, // found these quotation marks, very useful since they are kinda uncommon
+                            `<p class='command'>────────────────</p>`,
+                            `<p class='command'>OS: ${window.navigator.platform}</p>`, // Didn't find any good alternative so sticking with this
+                            `<p class='command'>Uptime: ${formatUptime(performance.now())}</p>`,
+                            `<p class='command'>Terminal: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L44">Venco's very advanced terminal trust</a></p>`,
+                            `<p class='command'>Shell: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L10C2-L10C3">Venco's very advanced shell trust</a></p>`,
+                            `<p class='command'>Display: ${window.screen.availWidth}x${window.screen.availHeight}</p>`,
+                        ];
+                    } else {
                     termHistory = [...termHistory, `<p class='error'>Unknown command: ${command}</p> <style>.error { color: red; }</style>`];
+                    }
+                    break;
             }
         }
     }
