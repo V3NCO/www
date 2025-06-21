@@ -117,6 +117,9 @@
                     termInput = 'hyfetch rainbow';
                     handleCommand({ key: 'Enter' });
                     break;
+                case 'vencord':
+                    termHistory = [...termHistory, "<a href='https://discord.com/channels/1063548024825057451/1192848123387707462/1384626216774012978'><img src='/images/vencord.png'/></a>"];
+                    break;
                 default:
                     if(command.indexOf('hyfetch ') === 0) {
                         const hyfetchArgs = command.replace('hyfetch ', '').trim();
