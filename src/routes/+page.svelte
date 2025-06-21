@@ -5,11 +5,13 @@
     import LinksPage from '$lib/right_content/links.svelte';
     import KeysPage from '$lib/right_content/keys.svelte';
     import FriendsPage from '$lib/right_content/friends.svelte';
+    import { dev } from '$app/environment';
     let name = 'Venco'; // In case i want to change my username basically everywhere i guess
     let gravatarsrc = 'https://gravatar.com/avatar/9f5b5ad2d2cd1bca67ec2702f8cbabf38bf1d10140bd7266ab15fdd4b2311fda?s=128';
     let termInput = '';
     let termHistory = ["<p class='command'>Welcome to Venco's website, Type 'help' to list commands.</p> <style>.command { color: #DDD; }</style>"];
     let currentPage = null;
+    let hosttext = "Github Pages"
 
     const pageComponents = {
         'links': LinksPage,
@@ -123,6 +125,9 @@
                 default:
                     if(command.indexOf('hyfetch ') === 0) {
                         const hyfetchArgs = command.replace('hyfetch ', '').trim();
+                        if (dev) {
+                            hosttext = "Svelte Dev Server";
+                        }
                         termHistory = [
                             ...termHistory,
                             `<p class='command'>venco@www</p>`, // found these quotation marks, very useful since they are kinda uncommon
@@ -132,6 +137,8 @@
                             `<p class='command'>Terminal: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L44">Venco's very advanced terminal trust</a></p>`,
                             `<p class='command'>Shell: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L10C2-L10C3">Venco's very advanced shell trust</a></p>`,
                             `<p class='command'>Display: ${window.screen.availWidth}x${window.screen.availHeight}</p>`,
+                            `<p class='command'>Font : JetBrains Mono</p>`,
+                            `<p class='command'>Host: ${hosttext}</p>` // I have no idea if it works on gh pages since i wont test it until hyfetch is fully done
                         ];
                     } else {
                     termHistory = [...termHistory, `<p class='error'>Unknown command: ${command}</p> <style>.error { color: red; }</style>`];
