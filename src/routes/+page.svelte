@@ -130,18 +130,18 @@
                         }
                         termHistory = [
                             ...termHistory,
-                            `<p class='ascii'>venco@www</p>`, // found these quotation marks, very useful since they are kinda uncommon
-                            `<p class='ascii'>────────────────</p>`,
-                            `<p class='ascii'>OS: ${window.navigator.platform}</p>`, // Didn't find any good alternative so sticking with this
-                            `<p class='ascii'>Host: ${hosttext}</p>`, // I have no idea if it works on gh pages since i wont test it until hyfetch is fully done
-                            `<p class='ascii'>Kernel: SvelteKit</p>`,
-                            `<p class='ascii'>Uptime: ${formatUptime(performance.now())}</p>`,
-                            `<p class='ascii'>Shell: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L10C2-L10C3">Venco's very advanced shell trust</a></p>`,
-                            `<p class='ascii'>Display: ${window.screen.availWidth}x${window.screen.availHeight}</p>`,
-                            `<p class='ascii'>WM: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L30">HTML+CSS Fixed tiling window manager</a></p>`,                            
-                            `<p class='ascii'>Terminal: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L44">Venco's very advanced terminal trust</a></p>`,
-                            `<p class='ascii'>Font : JetBrains Mono</p>`,
-                            `<p class='ascii'>Locale : en_US.UTF-8</p>`
+                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-1"><strong>cssoooooooooooosa </strong></span>   venco@www</p>`, // found these quotation marks, very useful since they are kinda uncommon
+                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-2"><strong>sssooooooooooooss </strong></span>   ────────────────</p>`,
+                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-3"><strong>sss           sss </strong></span>   OS: ${window.navigator.platform}</p>`, // Didn't find any good alternative so sticking with this
+                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-4"><strong>sss           sss </strong></span>   Host: ${hosttext}</p>`, // I have no idea if it works on gh pages since i wont test it until hyfetch is fully done
+                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-5"><strong>sss           sss </strong></span>   Kernel: SvelteKit</p>`,
+                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-6"><strong>sss           sss </strong></span>   Uptime: ${formatUptime(performance.now())}</p>`,
+                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-7"><strong>sss       /ooo   s</strong></span>   Shell: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L10C2-L10C3">Venco's very advanced shell trust</a></p>`,
+                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-8"><strong>sss       oooo   s</strong></span>   Display: ${window.screen.availWidth}x${window.screen.availHeight}</p>`,
+                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-9"><strong>sss       ooo/   o</strong></span>   WM: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L30">HTML+CSS Fixed tiling window manager</a></p>`,                            
+                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-10"><strong>ssoooooooo       o</strong></span>   Terminal: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L44">Venco's very advanced terminal trust</a></p>`,
+                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-11"><strong>usoooooooo       o</strong></span>   Font : JetBrains Mono</p>`,
+                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-12"><strong>          soooooo/</strong></span>   Locale : en_US.UTF-8</p>`
                         ];
                     } else {
                     termHistory = [...termHistory, `<p class='error'>Unknown command: ${command}</p> <style>.error { color: red; }</style>`];
@@ -329,10 +329,5 @@
         line-height: 1.8;
         color: #DDD;
     }
-    .ascii {
-        white-space: pre;
-        line-height: 0.4 !important;
-    }
-
 /* Why do the fonts look so bad on chromium :heavysob: ?? */
 </style>
