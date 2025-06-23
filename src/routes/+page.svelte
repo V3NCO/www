@@ -130,18 +130,18 @@
                         }
                         termHistory = [
                             ...termHistory,
-                            `<p class='command'>venco@www</p>`, // found these quotation marks, very useful since they are kinda uncommon
-                            `<p class='command'>────────────────</p>`,
-                            `<p class='command'>OS: ${window.navigator.platform}</p>`, // Didn't find any good alternative so sticking with this
-                            `<p class='command'>Host: ${hosttext}</p>`, // I have no idea if it works on gh pages since i wont test it until hyfetch is fully done
-                            `<p class='command'>Kernel: SvelteKit</p>`,
-                            `<p class='command'>Uptime: ${formatUptime(performance.now())}</p>`,
-                            `<p class='command'>Shell: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L10C2-L10C3">Venco's very advanced shell trust</a></p>`,
-                            `<p class='command'>Display: ${window.screen.availWidth}x${window.screen.availHeight}</p>`,
-                            `<p class='command'>WM: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L30">HTML+CSS Fixed tiling window manager</a></p>`,                            
-                            `<p class='command'>Terminal: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L44">Venco's very advanced terminal trust</a></p>`,
-                            `<p class='command'>Font : JetBrains Mono</p>`,
-                            `<p class='command'>Locale : en_US.UTF-8</p>`
+                            `<p class='ascii'>venco@www</p>`, // found these quotation marks, very useful since they are kinda uncommon
+                            `<p class='ascii'>────────────────</p>`,
+                            `<p class='ascii'>OS: ${window.navigator.platform}</p>`, // Didn't find any good alternative so sticking with this
+                            `<p class='ascii'>Host: ${hosttext}</p>`, // I have no idea if it works on gh pages since i wont test it until hyfetch is fully done
+                            `<p class='ascii'>Kernel: SvelteKit</p>`,
+                            `<p class='ascii'>Uptime: ${formatUptime(performance.now())}</p>`,
+                            `<p class='ascii'>Shell: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L10C2-L10C3">Venco's very advanced shell trust</a></p>`,
+                            `<p class='ascii'>Display: ${window.screen.availWidth}x${window.screen.availHeight}</p>`,
+                            `<p class='ascii'>WM: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L30">HTML+CSS Fixed tiling window manager</a></p>`,                            
+                            `<p class='ascii'>Terminal: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L44">Venco's very advanced terminal trust</a></p>`,
+                            `<p class='ascii'>Font : JetBrains Mono</p>`,
+                            `<p class='ascii'>Locale : en_US.UTF-8</p>`
                         ];
                     } else {
                     termHistory = [...termHistory, `<p class='error'>Unknown command: ${command}</p> <style>.error { color: red; }</style>`];
@@ -289,7 +289,7 @@
         box-sizing: border-box;
     }
     .term-line {
-        margin-bottom: 5px;
+        line-height: 1.8;
         word-break: break-word;
     }
     .term-input-contain {
@@ -328,6 +328,10 @@
     .presentation {
         line-height: 1.8;
         color: #DDD;
+    }
+    .ascii {
+        white-space: pre;
+        line-height: 0.4 !important;
     }
 
 /* Why do the fonts look so bad on chromium :heavysob: ?? */
