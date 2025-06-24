@@ -296,6 +296,7 @@ export function hyfetch_get_colors(theme) {
             break;
         case 7:
             colordistribution = [1, 2, 2, 2, 2, 2, 1]
+            break;
         case 8:
             colordistribution = [1, 1, 2, 2, 2, 2, 1, 1] 
             break;
