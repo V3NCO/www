@@ -6,6 +6,7 @@
     import KeysPage from '$lib/right_content/keys.svelte';
     import FriendsPage from '$lib/right_content/friends.svelte';
     import { dev } from '$app/environment';
+    import { hyfetch_get_colors } from '$lib/hyfetch_colors.js';
     let name = 'Venco'; // In case i want to change my username basically everywhere i guess
     let gravatarsrc = 'https://gravatar.com/avatar/9f5b5ad2d2cd1bca67ec2702f8cbabf38bf1d10140bd7266ab15fdd4b2311fda?s=128';
     let termInput = '';
@@ -128,21 +129,27 @@
                         if (dev) {
                             hosttext = "Svelte Dev Server";
                         }
-                        termHistory = [
-                            ...termHistory,
-                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-1"><strong>cssoooooooooooosa </strong></span>   venco@www</p>`, // found these quotation marks, very useful since they are kinda uncommon
-                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-2"><strong>sssooooooooooooss </strong></span>   ────────────────</p>`,
-                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-3"><strong>sss           sss </strong></span>   OS: ${window.navigator.platform}</p>`, // Didn't find any good alternative so sticking with this
-                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-4"><strong>sss           sss </strong></span>   Host: ${hosttext}</p>`, // I have no idea if it works on gh pages since i wont test it until hyfetch is fully done
-                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-5"><strong>sss           sss </strong></span>   Kernel: SvelteKit</p>`,
-                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-6"><strong>sss           sss </strong></span>   Uptime: ${formatUptime(performance.now())}</p>`,
-                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-7"><strong>sss       /ooo   s</strong></span>   Shell: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L10C2-L10C3">Venco's very advanced shell trust</a></p>`,
-                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-8"><strong>sss       oooo   s</strong></span>   Display: ${window.screen.availWidth}x${window.screen.availHeight}</p>`,
-                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-9"><strong>sss       ooo/   o</strong></span>   WM: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L30">HTML+CSS Fixed tiling window manager</a></p>`,                            
-                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-10"><strong>ssoooooooo       o</strong></span>   Terminal: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L44">Venco's very advanced terminal trust</a></p>`,
-                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-11"><strong>usoooooooo       o</strong></span>   Font : JetBrains Mono</p>`,
-                            `<p style='line-height: 1.2; white-space: pre;'><span class="color-hyfetch-12"><strong>          soooooo/</strong></span>   Locale : en_US.UTF-8</p>`
-                        ];
+                        let colors = hyfetch_get_colors(hyfetchArgs)
+                        if (colors[0] == "Over12ColorsError") {
+                            termHistory = [...termHistory, `<p class='error'>Hey so if you're seeing this your flag is probably more than 12 colors and since i only have 12 lines to work with i didn't find anything for you, i'm very sorry !</p> <style>.error { color: red; }</style>`];
+                        } else {
+                            console.log(colors);
+                            termHistory = [
+                                ...termHistory,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[0]}"><strong>cssoooooooooooosa </strong></span>   venco@www</p>`, // found these quotation marks, very useful since they are kinda uncommon
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[1]}"><strong>sssooooooooooooss </strong></span>   ────────────────</p>`,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[2]}"><strong>sss           sss </strong></span>   OS: ${window.navigator.platform}</p>`, // Didn't find any good alternative so sticking with this
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[3]}"><strong>sss           sss </strong></span>   Host: ${hosttext}</p>`, // I have no idea if it works on gh pages since i wont test it until hyfetch is fully done
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[4]}"><strong>sss           sss </strong></span>   Kernel: SvelteKit</p>`,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[5]}"><strong>sss           sss </strong></span>   Uptime: ${formatUptime(performance.now())}</p>`,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[6]}"><strong>sss       /ooo   s</strong></span>   Shell: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L10C2-L10C3">Venco's very advanced shell trust</a></p>`,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[7]}"><strong>sss       oooo   s</strong></span>   Display: ${window.screen.availWidth}x${window.screen.availHeight}</p>`,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[8]}"><strong>sss       ooo/   o</strong></span>   WM: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L30">HTML+CSS Fixed tiling window manager</a></p>`,                            
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[9]}"><strong>ssoooooooo       o</strong></span>   Terminal: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L44">Venco's very advanced terminal trust</a></p>`,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color:${colors[10]}"><strong>usoooooooo       o</strong></span>   Font : JetBrains Mono</p>`,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color:${colors[11]}"><strong>          soooooo/</strong></span>   Locale : en_US.UTF-8</p>`
+                            ];
+                        }
                     } else {
                     termHistory = [...termHistory, `<p class='error'>Unknown command: ${command}</p> <style>.error { color: red; }</style>`];
                     }

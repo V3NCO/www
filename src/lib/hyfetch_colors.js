@@ -1,4 +1,4 @@
-function hyfetch_get_colors(theme) {
+export function hyfetch_get_colors(theme) {
     // Colors from https://github.com/hykilpikonna/hyfetch/blob/master/hyfetch/presets.py, everything after transgender is translated using Copilot, if there are any mistakes make an issue or a PR
     let colorlist = []
     switch (theme) {
@@ -270,9 +270,71 @@ function hyfetch_get_colors(theme) {
             colorlist = ['#2670c0', '#f5bd00', '#dc0045', '#e0608e']
             break;
         default:
-            colorlist = ['#FFFFFF']
+            colorlist = ['#9683ec']
             break;
     }
-    let linepercolor = 12 / colorlist.length
-    let linefloor = Math.floor(linepercolor)
+    // I was gonna do logic here that would use divisions ect, but i'm not smart enough and doing case is just gonna take less time
+    let colordistribution = [12]
+    switch (colorlist.length) {
+        case 1:
+            colordistribution = [12] 
+            break;
+        case 2:
+            colordistribution = [6, 6] 
+            break;
+        case 3:
+            colordistribution = [4, 4, 4] 
+            break;
+        case 4:
+            colordistribution = [3, 3, 3, 3] 
+            break;
+        case 5:
+            colordistribution = [2, 2, 4, 2, 2] 
+            break;
+        case 6:
+            colordistribution = [2, 2, 2, 2, 2, 2] 
+            break;
+        case 7:
+            colordistribution = [1, 2, 2, 2, 2, 2, 1]
+        case 8:
+            colordistribution = [1, 1, 2, 2, 2, 2, 1, 1] 
+            break;
+        case 9:
+            colordistribution = [1, 1, 1, 2, 2, 2, 1, 1, 1] 
+            break;
+        case 10:
+            colordistribution = [1, 1, 1, 1, 2, 2, 1, 1, 1, 1] 
+            break;
+        case 11:
+            colordistribution = [1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1] 
+            break;
+        case 12:
+            colordistribution = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] 
+            break;
+        default:
+            colordistribution = null
+            break;
+    }    
+    const colors = [];
+    if (colordistribution != null) {
+        let currentColor_index = 0;
+        for (let i = 0; i < colordistribution.length; i++) {
+            let lineNumber = colordistribution[i];
+            let currentColor = colorlist[currentColor_index];
+
+            for (let l = 0; l < lineNumber; l++) {
+                colors.push(currentColor);
+            }
+            currentColor_index++;
+        }
+    } else {
+        colors.push("Over12ColorsError");
+    }
+    console.log("DEBUG :")
+    console.log("Theme: " + theme);
+    console.log("Colors: " + colorlist);
+    console.log("Color distribution: " + colordistribution);
+    console.log("Final colors: " + colors);
+    console.log("Colors length: " + colors.length);
+    return colors;
 }
