@@ -139,7 +139,7 @@
                                 `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[0]}"><strong>cssoooooooooooosa </strong></span>   venco@www</p>`, // found these quotation marks, very useful since they are kinda uncommon
                                 `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[1]}"><strong>sssooooooooooooss </strong></span>   ────────────────</p>`,
                                 `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[2]}"><strong>sss           sss </strong></span>   OS: ${window.navigator.platform}</p>`, // Didn't find any good alternative so sticking with this
-                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[3]}"><strong>sss           sss </strong></span>   Host: ${hosttext}</p>`, // I have no idea if it works on gh pages since i wont test it until hyfetch is fully done
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[3]}"><strong>sss           sss </strong></span>   Host: ${hosttext}</p>`,
                                 `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[4]}"><strong>sss           sss </strong></span>   Kernel: SvelteKit</p>`,
                                 `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[5]}"><strong>sss           sss </strong></span>   Uptime: ${formatUptime(performance.now())}</p>`,
                                 `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[6]}"><strong>sss       /ooo   s</strong></span>   Shell: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L10C2-L10C3">Venco's very advanced shell trust</a></p>`,
@@ -150,6 +150,9 @@
                                 `<p style='line-height: 1.2; white-space: pre;'><span style="color:${colors[11]}"><strong>          soooooo/</strong></span>   Locale : en_US.UTF-8</p>`
                             ];
                         }
+                    } else if(command.indexOf('rm ') === 0) { // At least you can use any argument lol
+                        document.body.style.background = 'transparent';
+                        document.body.innerHTML = '';
                     } else {
                     termHistory = [...termHistory, `<p class='error'>Unknown command: ${command}</p> <style>.error { color: red; }</style>`];
                     }
