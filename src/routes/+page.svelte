@@ -5,11 +5,14 @@
     import LinksPage from '$lib/right_content/links.svelte';
     import KeysPage from '$lib/right_content/keys.svelte';
     import FriendsPage from '$lib/right_content/friends.svelte';
+    import { dev } from '$app/environment';
+    import { hyfetch_get_colors } from '$lib/hyfetch_colors.js';
     let name = 'Venco'; // In case i want to change my username basically everywhere i guess
     let gravatarsrc = 'https://gravatar.com/avatar/9f5b5ad2d2cd1bca67ec2702f8cbabf38bf1d10140bd7266ab15fdd4b2311fda?s=128';
     let termInput = '';
     let termHistory = ["<p class='command'>Welcome to Venco's website, Type 'help' to list commands.</p> <style>.command { color: #DDD; }</style>"];
     let currentPage = null;
+    let hosttext = "Github Pages"
 
     const pageComponents = {
         'links': LinksPage,
@@ -24,6 +27,26 @@
         const age = (now - birthTimestamp) / (1000 * 60 * 60 * 24 * 365.25);
         return age;
     };
+
+    function formatUptime(milliseconds) {
+        const totalSeconds = Math.floor(milliseconds / 1000);
+        
+        const years = Math.floor(totalSeconds / (365 * 24 * 60 * 60));
+        const days = Math.floor((totalSeconds % (365 * 24 * 60 * 60)) / (24 * 60 * 60));
+        const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
+        const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+        const seconds = totalSeconds % 60;
+        
+        const parts = [];
+        
+        if (years > 0) parts.push(`${years} year${years !== 1 ? 's' : ''}`);
+        if (days > 0) parts.push(`${days} day${days !== 1 ? 's' : ''}`);
+        if (hours > 0) parts.push(`${hours} hour${hours !== 1 ? 's' : ''}`);
+        if (minutes > 0) parts.push(`${minutes} minute${minutes !== 1 ? 's' : ''}`);
+        if (seconds > 0 || parts.length === 0) parts.push(`${seconds} second${seconds !== 1 ? 's' : ''}`);
+        
+        return parts.join(' ');
+    }
 
 
     // I'll be honest i used copilot for this part, i have no idea of how it works
@@ -92,11 +115,48 @@
                 case 'ls':
                     termHistory = [...termHistory, "<p class='command'>For some reason I have this weird reflex where everytime I'm in a terminal I type ls instantly</p>"];
                     break;
+                case 'hyfetch':
+                    termHistory.pop()
+                    termInput = 'hyfetch rainbow';
+                    handleCommand({ key: 'Enter' });
+                    break;
                 case 'vencord':
                     termHistory = [...termHistory, "<a href='https://discord.com/channels/1063548024825057451/1192848123387707462/1384626216774012978'><img src='/images/vencord.png'/></a>"];
                     break;
                 default:
-                    termHistory = [...termHistory, `<p class='error'>Unknown command: ${command}</p> <style>.error { color: red; }</style>`];
+                    if(command.indexOf('hyfetch ') === 0) {
+                        const hyfetchArgs = command.replace('hyfetch ', '').trim();
+                        if (dev) {
+                            hosttext = "Svelte Dev Server";
+                        }
+                        let colors = hyfetch_get_colors(hyfetchArgs)
+                        if (colors[0] == "Over12ColorsError") {
+                            termHistory = [...termHistory, `<p class='error'>Hey so if you're seeing this your flag is probably more than 12 colors and since i only have 12 lines to work with i didn't find anything for you, i'm very sorry !</p> <style>.error { color: red; }</style>`];
+                        } else {
+                            console.log(colors);
+                            termHistory = [
+                                ...termHistory,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[0]}"><strong>cssoooooooooooosa </strong></span>   venco@www</p>`, // found these quotation marks, very useful since they are kinda uncommon
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[1]}"><strong>sssooooooooooooss </strong></span>   ────────────────</p>`,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[2]}"><strong>sss           sss </strong></span>   OS: ${window.navigator.platform}</p>`, // Didn't find any good alternative so sticking with this
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[3]}"><strong>sss           sss </strong></span>   Host: ${hosttext}</p>`,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[4]}"><strong>sss           sss </strong></span>   Kernel: SvelteKit</p>`,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[5]}"><strong>sss           sss </strong></span>   Uptime: ${formatUptime(performance.now())}</p>`,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[6]}"><strong>sss       /ooo   s</strong></span>   Shell: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L10C2-L10C3">Venco's very advanced shell trust</a></p>`,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[7]}"><strong>sss       oooo   s</strong></span>   Display: ${window.screen.availWidth}x${window.screen.availHeight}</p>`,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[8]}"><strong>sss       ooo/   o</strong></span>   WM: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L30">HTML+CSS Fixed tiling window manager</a></p>`,                            
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[9]}"><strong>ssoooooooo       o</strong></span>   Terminal: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L44">Venco's very advanced terminal trust</a></p>`,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color:${colors[10]}"><strong>usoooooooo       o</strong></span>   Font : JetBrains Mono</p>`,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color:${colors[11]}"><strong>          soooooo/</strong></span>   Locale : en_US.UTF-8</p>`
+                            ];
+                        }
+                    } else if(command.indexOf('rm ') === 0) { // At least you can use any argument lol
+                        document.body.style.background = 'transparent';
+                        document.body.innerHTML = '';
+                    } else {
+                        termHistory = [...termHistory, `<p class='error'>Unknown command: ${command}</p> <style>.error { color: red; }</style>`];
+                    }
+                    break;
             }
         }
     }
@@ -109,7 +169,7 @@
 <div class="tl">
     <div class="box">
         <div class="image-container">
-            <img src={gravatarsrc} alt="{name}'s profile picture : Basil from omori with happy emotion in combat state" width="128" height="128" class="pfp"/>
+            <img src={gravatarsrc} alt="{name}'s profile picture : 3 Squares with an Exclude mask : 2 Are different sizes but both in the middle while the 3rd one is in the bottom right corner" width="128" height="128" class="pfp"/>
             <div class="presentation">
                 <p class="jb-mono">Hi, I'm <strong>{name}</strong>, I'm <span style="color: #AAA;"><strong>{age.toFixed(8)}</strong></span> years old</p>
                 <p class="jb-mono">~~ Welcome to my corner of the internet! ~~</p>
@@ -239,7 +299,7 @@
         box-sizing: border-box;
     }
     .term-line {
-        margin-bottom: 5px;
+        line-height: 1.8;
         word-break: break-word;
     }
     .term-input-contain {
@@ -279,6 +339,5 @@
         line-height: 1.8;
         color: #DDD;
     }
-
 /* Why do the fonts look so bad on chromium :heavysob: ?? */
 </style>
