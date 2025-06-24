@@ -154,7 +154,7 @@
                         document.body.style.background = 'transparent';
                         document.body.innerHTML = '';
                     } else {
-                    termHistory = [...termHistory, `<p class='error'>Unknown command: ${command}</p> <style>.error { color: red; }</style>`];
+                        termHistory = [...termHistory, `<p class='error'>Unknown command: ${command}</p> <style>.error { color: red; }</style>`];
                     }
                     break;
             }
@@ -169,7 +169,7 @@
 <div class="tl">
     <div class="box">
         <div class="image-container">
-            <img src={gravatarsrc} alt="{name}'s profile picture : Basil from omori with happy emotion in combat state" width="128" height="128" class="pfp"/>
+            <img src={gravatarsrc} alt="{name}'s profile picture : 3 Squares with an Exclude mask : 2 Are different sizes but both in the middle while the 3rd one is in the bottom right corner" width="128" height="128" class="pfp"/>
             <div class="presentation">
                 <p class="jb-mono">Hi, I'm <strong>{name}</strong>, I'm <span style="color: #AAA;"><strong>{age.toFixed(8)}</strong></span> years old</p>
                 <p class="jb-mono">~~ Welcome to my corner of the internet! ~~</p>
