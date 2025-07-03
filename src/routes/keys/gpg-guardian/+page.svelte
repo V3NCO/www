@@ -1,3 +1,7 @@
+<svelte:head>
+    <title>Venco's key : GPG</title>
+</svelte:head>
+
 <div class="jb-mono" style="margin: 20px;">
     <p><strong>Key Type :</strong> RSA-4096</p>
     <p><strong>Key ID :</strong> E5E0FA4E59297845</p>

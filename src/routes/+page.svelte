@@ -164,7 +164,9 @@
 
 
 <!-- HTML Part -->
-
+<svelte:head>
+    <title>Venco's website</title>
+</svelte:head>
 
 <div class="tl">
     <div class="box">

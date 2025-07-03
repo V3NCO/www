@@ -1,3 +1,7 @@
+<svelte:head>
+    <title>Venco's key : SSH</title>
+</svelte:head>
+
 <div class="jb-mono" style="margin: 20px;">
     <p><strong>Key Type :</strong> ed22519 With Security Key</p>
     <p><strong>FIDO2 Domain :</strong> openssh.com</p>
