@@ -5,6 +5,7 @@
     import LinksPage from '$lib/right_content/links.svelte';
     import KeysPage from '$lib/right_content/keys.svelte';
     import FriendsPage from '$lib/right_content/friends.svelte';
+    import ProjectsPage from '$lib/right_content/projects.svelte';
     import { dev } from '$app/environment';
     import { hyfetch_get_colors } from '$lib/hyfetch_colors.js';
     let name = 'Venco'; // In case i want to change my username basically everywhere i guess
@@ -17,7 +18,8 @@
     const pageComponents = {
         'links': LinksPage,
         'keys': KeysPage,
-        'friends': FriendsPage
+        'friends': FriendsPage,
+        'projects': ProjectsPage
     };
 
     // Grabbed from https://github.com/prplwtf/www/blob/main/components/AgeCounter.vue 
@@ -122,6 +124,10 @@
                     break;
                 case 'vencord':
                     termHistory = [...termHistory, "<a href='https://discord.com/channels/1063548024825057451/1192848123387707462/1384626216774012978'><img src='/images/vencord.png'/></a>"];
+                    break;
+                case 'projects':
+                    termHistory = [...termHistory, "<p class='command'>Here are the projects i have on my GitHub</p>"];
+                    currentPage = 'projects';
                     break;
                 default:
                     if(command.indexOf('hyfetch ') === 0) {

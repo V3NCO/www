@@ -5,7 +5,7 @@
     import Steam_logo from '$lib/assets/icons/steam.svelte';
     import Discord_logo from '$lib/assets/icons/discord.svelte';
     import Bluesky_logo from '$lib/assets/icons/bluesky.svelte';
-    import Email_icon from '../assets/icons/email.svelte';
+    import Email_icon from '$lib/assets/icons/email.svelte';
 </script>
 
 
