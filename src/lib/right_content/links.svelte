@@ -22,7 +22,7 @@
     </div>
     <hr style="border: 1px solid #9683EC; margin: 10px 0; width: 100%; box-sizing: border-box;">
     <div class="link-item" style="margin-top: 5px;">
-        <HackclubIconProgress/>
+        <HackclubIconMono/>
         <span style="font-weight: 250; font-size: 20px;"><a href="https://hackclub.slack.com/team/U08L7671TDG" target="_blank" style="color: #FFFFFF">Hackclub Slack - <span style="color: hsl(210, 77%, 53%)">@Venco</a></span>
     </div>
     <hr style="border: 1px solid #9683EC; margin: 10px 0; width: 100%; box-sizing: border-box;">
