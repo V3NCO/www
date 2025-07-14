@@ -11,7 +11,7 @@
     let name = 'Venco'; // In case i want to change my username basically everywhere i guess
     let gravatarsrc = 'https://gravatar.com/avatar/9f5b5ad2d2cd1bca67ec2702f8cbabf38bf1d10140bd7266ab15fdd4b2311fda?s=128';
     let termInput = '';
-    let termHistory = ["<p class='command'>Welcome to Venco's website, Type 'help' to list commands.</p> <style>.command { color: #DDD; }</style>"];
+    let termHistory = [`<p class='command'>Welcome to ${name}'s website, Type 'help' to list commands.</p> <style>.command { color: #DDD; }</style>`];
     let currentPage = null;
     let hosttext = "Github Pages"
 
@@ -142,16 +142,16 @@
                             console.log(colors);
                             termHistory = [
                                 ...termHistory,
-                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[0]}"><strong>cssoooooooooooosa </strong></span>   venco@www</p>`, // found these quotation marks, very useful since they are kinda uncommon
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[0]}"><strong>cssoooooooooooosa </strong></span>   ${name.toLowerCase()}@www</p>`, // found these quotation marks, very useful since they are kinda uncommon
                                 `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[1]}"><strong>sssooooooooooooss </strong></span>   ────────────────</p>`,
                                 `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[2]}"><strong>sss           sss </strong></span>   OS: ${window.navigator.platform}</p>`, // Didn't find any good alternative so sticking with this
                                 `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[3]}"><strong>sss           sss </strong></span>   Host: ${hosttext}</p>`,
                                 `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[4]}"><strong>sss           sss </strong></span>   Kernel: SvelteKit</p>`,
                                 `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[5]}"><strong>sss           sss </strong></span>   Uptime: ${formatUptime(performance.now())}</p>`,
-                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[6]}"><strong>sss       /ooo   s</strong></span>   Shell: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L10C2-L10C3">Venco's very advanced shell trust</a></p>`,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[6]}"><strong>sss       /ooo   s</strong></span>   Shell: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L10C2-L10C3">${name}'s very advanced shell trust</a></p>`,
                                 `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[7]}"><strong>sss       oooo   s</strong></span>   Display: ${window.screen.availWidth}x${window.screen.availHeight}</p>`,
                                 `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[8]}"><strong>sss       ooo/   o</strong></span>   WM: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L30">HTML+CSS Fixed tiling window manager</a></p>`,                            
-                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[9]}"><strong>ssoooooooo       o</strong></span>   Terminal: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L44">Venco's very advanced terminal trust</a></p>`,
+                                `<p style='line-height: 1.2; white-space: pre;'><span style="color: ${colors[9]}"><strong>ssoooooooo       o</strong></span>   Terminal: <a href="https://github.com/V3NCO/www/blob/feffcfde0b7f280982a6aa32a170a7d868fb737b/src/routes/%2Bpage.svelte#L44">${name}'s very advanced terminal trust</a></p>`,
                                 `<p style='line-height: 1.2; white-space: pre;'><span style="color:${colors[10]}"><strong>usoooooooo       o</strong></span>   Font : JetBrains Mono</p>`,
                                 `<p style='line-height: 1.2; white-space: pre;'><span style="color:${colors[11]}"><strong>          soooooo/</strong></span>   Locale : en_US.UTF-8</p>`
                             ];
@@ -171,7 +171,7 @@
 
 <!-- HTML Part -->
 <svelte:head>
-    <title>Venco's website</title>
+    <title>{name}'s website</title>
 </svelte:head>
 
 <div class="tl">
