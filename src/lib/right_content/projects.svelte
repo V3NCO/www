@@ -1,43 +1,95 @@
-<script>
-    import {Octokit} from "octokit"
+<script lang="ts">
+    import { onMount } from "svelte";
+    import { Octokit } from "octokit";
+    import { colors } from "../colors";
+    let repos = [];
+    let loading = true;
+    let error = null;
+    let langrepos = {};
+    
+    const calculateLanguagePercentages = (languages: Record<string, number>) => {
+        const total = Object.values(languages).reduce((sum: number, bytes: number) => sum + bytes, 0);
+        return Object.entries(languages).map(([lang, bytes]) => ({
+            name: lang,
+            percentage: (bytes / total * 100).toFixed(1),
+            color: getColor(lang)
+        }));
+    };
+    
+    
+    const getColor = (language: string): string => {
+        return colors[language] || "#DDD";
+      };
+    
+    onMount(async () => {
+        try {
+            const octokit = new Octokit();
+            const response = await octokit.request("GET /users/V3NCO/repos", {per_page: 100, sort: "updated"});
+            repos = response.data;
+            console.log(repos);
+            for (const repo of repos) {
+                const langresponse = await octokit.request(`GET ${repo.languages_url}`);
+                const languages = langresponse.data;
+                langrepos[repo.id] = languages;
+                console.log(langrepos);
+            }
+        } catch (e) {
+            error = e.message;
+        } finally {
+            loading = false;
+        }
+    });
 </script>
 
 <div class="main_container">
-    <div class="repo_container">
-        <div class="repo_box">
-            <div class="gradient_overlay"></div>
-            <div class="repo_content">
-                <h3 class="repo_title">Repository Name</h3>
-                <p class="repo_description">A brief description of what this repository does</p>
-                <div class="repo_stats">
-                    <span class="stat">⭐ 10</span>
-                    <span class="stat">🍴 10</span>
-                    <span class="stat">JavaScript</span>
-                </div>
+    {#if loading}
+        <p style="color: #DDD; font-family: 'JetBrains Mono', monospace;">
+            Loading repositories...
+        </p>
+    {:else if error}
+        <p style="color: #FF3333; font-family: 'JetBrains Mono', monospace;">
+            Error: {error}
+        </p>
+    {:else if repos.length === 0}
+        <p style="color: #DDD; font-family: 'JetBrains Mono', monospace;">
+            No repos found somehow
+        </p>
+    {:else}
+        {#each repos as repo}
+            <div class="repo_container">
+                <a class="repo_box" href={repo.html_url} target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+                    <div class="gradient_overlay"></div>
+                    <div class="repo_content">
+                        <h3 class="repo_title" style="font-family:'JetBrains Mono';color:#DDD;">
+                            {repo.name}
+                        </h3>
+                        <p class="repo_description" style="color: #BBB;">
+                            {repo.description || "No description"}
+                        </p>
+                        <div class="repo_stats" style="display: flex; gap: 15px; margin-top: 8px;">
+                            <span class="stat" style="color: #FFD700;">⭐ {repo.stargazers_count}</span>
+                            <span class="stat" style="color: #C0C0C0;">🍴 {repo.forks_count}</span>
+                            <span class="stat" style="color: #9cf;">{repo.language || "Unknown"}</span>
+                            {#if langrepos[repo.id] && Object.keys(langrepos[repo.id]).length > 0}
+                                <div class="flexible-tag">
+                                    <div class="inner-bar">
+                                        {#each calculateLanguagePercentages(langrepos[repo.id]) as lang}
+                                            <div class="bar-item" style="background-color: {lang.color}; width: {lang.percentage}%;" title="{lang.name}: {lang.percentage}%"></div>
+                                        {/each}
+                                    </div>
+                                </div>
+                            {/if}
+                        </div>
+                    </div>
+                </a>
             </div>
-        </div>
-    </div>
-    <div class="repo_container">
-        <div class="repo_box">
-            <div class="gradient_overlay"></div>
-            <div class="repo_content">
-                <h3 class="repo_title">Repository Name</h3>
-                <p class="repo_description">A brief description of what this repository does</p>
-                <div class="repo_stats">
-                    <span class="stat">⭐ 10</span>
-                    <span class="stat">🍴 10</span>
-                    <span class="stat">JavaScript</span>
-                </div>
-            </div>
-        </div>
-    </div>
+        {/each}
+    {/if}
 </div>
 
 <style>
-    /* Add this CSS for your main container */
     .main_container {
         width: 100%;
-        max-width: 1200px; /* Adjust this value as needed */
         margin: 0 auto;
         display: flex;
         flex-direction: column;
@@ -46,7 +98,7 @@
 
     .repo_container {
         width: 100%;
-        height: 22%; /* Change from 22% to fixed height */
+        height: 22%;
         padding: 9px;
         box-sizing: border-box;
     }
@@ -66,7 +118,46 @@
         transition: all 0.3s ease;
         cursor: pointer;
     }
+
+    .flexible-tag {
+        flex: 1;
+        opacity: 0.8;
+        padding: 4px 8px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 25px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .inner-bar {
+        display: flex;
+        height: 100%;
+        border-radius: 25px;
+        align-items: center;
+    }
+
+    .bar-item {
+        text-align: center;
+        line-height: 50px;
+        color: white;
+        background-color: var(--itemcolor);
+        height: 15px; 
+        min-height: 15px; 
+    }
     
+    .bar-item:first-child {
+        border-radius: 15px 0 0 15px;
+    }
+    
+    .bar-item:last-child {
+        border-radius: 0 15px 15px 0;
+    }
+    
+    .bar-item:only-child {
+        border-radius: 15px;
+    }
+
+
     .repo_box:hover {
         outline-color: #b3a5f1;
         outline-width: 3px;
@@ -74,7 +165,6 @@
         box-shadow: 0 8px 25px rgba(150, 131, 236, 0.3);
     }
     
-    /* Smooth gradient overlay for text readability */
     .gradient_overlay {
         position: absolute;
         top: 0;
@@ -91,7 +181,6 @@
         z-index: 1;
     }
     
-    /* Content positioning and styling */
     .repo_content {
         position: relative;
         z-index: 2;
@@ -99,7 +188,7 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        width: 65%;
+        width: 100%;
         color: white;
     }
     
