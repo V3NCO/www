@@ -6,6 +6,7 @@
     let loading = true;
     let error = null;
     let langrepos = {};
+    let ignoredRepos = ["wakana"];
     
     const calculateLanguagePercentages = (languages: Record<string, number>) => {
         const total = Object.values(languages).reduce((sum: number, bytes: number) => sum + bytes, 0);
@@ -56,33 +57,35 @@
         </p>
     {:else}
         {#each repos as repo}
-            <div class="repo_container">
-                <a class="repo_box" href={repo.html_url} target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
-                    <div class="gradient_overlay"></div>
-                    <div class="repo_content">
-                        <h3 class="repo_title" style="font-family:'JetBrains Mono';color:#DDD;">
-                            {repo.name}
-                        </h3>
-                        <p class="repo_description" style="color: #BBB;">
-                            {repo.description || "No description"}
-                        </p>
-                        <div class="repo_stats" style="display: flex; gap: 15px; margin-top: 8px;">
-                            <span class="stat" style="color: #FFD700;">⭐ {repo.stargazers_count}</span>
-                            <span class="stat" style="color: #C0C0C0;">🍴 {repo.forks_count}</span>
-                            <span class="stat" style="color: #9cf;">{repo.language || "Unknown"}</span>
-                            {#if langrepos[repo.id] && Object.keys(langrepos[repo.id]).length > 0}
-                                <div class="flexible-tag">
-                                    <div class="inner-bar">
-                                        {#each calculateLanguagePercentages(langrepos[repo.id]) as lang}
-                                            <div class="bar-item" style="background-color: {lang.color}; width: {lang.percentage}%;" title="{lang.name}: {lang.percentage}%"></div>
-                                        {/each}
+            {#if !ignoredRepos.includes(repo.name)}
+                <div class="repo_container">
+                    <a class="repo_box" href={repo.html_url} target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+                        <div class="gradient_overlay"></div>
+                        <div class="repo_content">
+                            <h3 class="repo_title" style="font-family:'JetBrains Mono';color:#DDD;">
+                                {repo.name}
+                            </h3>
+                            <p class="repo_description" style="color: #BBB;">
+                                {repo.description || "No description"}
+                            </p>
+                            <div class="repo_stats" style="display: flex; gap: 15px; margin-top: 8px;">
+                                <span class="stat" style="color: #FFD700;">⭐ {repo.stargazers_count}</span>
+                                <span class="stat" style="color: #C0C0C0;">🍴 {repo.forks_count}</span>
+                                <span class="stat" style="color: #9cf;">{repo.language || "Unknown"}</span>
+                                {#if langrepos[repo.id] && Object.keys(langrepos[repo.id]).length > 0}
+                                    <div class="flexible-tag">
+                                        <div class="inner-bar">
+                                            {#each calculateLanguagePercentages(langrepos[repo.id]) as lang}
+                                                <div class="bar-item" style="background-color: {lang.color}; width: {lang.percentage}%;" title="{lang.name}: {lang.percentage}%"></div>
+                                            {/each}
+                                        </div>
                                     </div>
-                                </div>
-                            {/if}
+                                {/if}
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
+            {/if}
         {/each}
     {/if}
 </div>
