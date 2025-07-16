@@ -1,5 +1,5 @@
 <script>
-    
+    import {Octokit} from "octokit"
 </script>
 
 <div class="main_container">
