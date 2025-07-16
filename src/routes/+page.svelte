@@ -6,6 +6,7 @@
     import KeysPage from '$lib/right_content/keys.svelte';
     import FriendsPage from '$lib/right_content/friends.svelte';
     import ProjectsPage from '$lib/right_content/projects.svelte';
+    import PronounsPage from '$lib/right_content/pronouns.svelte'
     import { dev } from '$app/environment';
     import { hyfetch_get_colors } from '$lib/hyfetch_colors.js';
     let name = 'Venco'; // In case i want to change my username basically everywhere i guess
@@ -19,7 +20,8 @@
         'links': LinksPage,
         'keys': KeysPage,
         'friends': FriendsPage,
-        'projects': ProjectsPage
+        'projects': ProjectsPage,
+        'pronouns': PronounsPage
     };
 
     // Grabbed from https://github.com/prplwtf/www/blob/main/components/AgeCounter.vue 
@@ -128,6 +130,10 @@
                 case 'projects':
                     termHistory = [...termHistory, "<p class='command'>Here are the projects i have on my GitHub</p>"];
                     currentPage = 'projects';
+                    break;
+                case 'pronouns':
+                    termHistory = [...termHistory, `<a href='https://en.pronouns.page/u/${name.toLowerCase()}' class='command'>Here is my Pronouns.page !</a>`];
+                    currentPage= 'pronouns';
                     break;
                 default:
                     if(command.indexOf('hyfetch ') === 0) {
