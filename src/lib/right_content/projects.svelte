@@ -59,7 +59,7 @@
         {#each repos as repo}
             {#if !ignoredRepos.includes(repo.name)}
                 <div class="repo_container">
-                    <a class="repo_box" href={repo.html_url} target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+                    <a class="repo_box" href={repo.html_url} target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; background-image: url('/images/gh-banners/{repo.name.toLowerCase()}.png');">
                         <div class="gradient_overlay"></div>
                         <div class="repo_content">
                             <h3 class="repo_title" style="font-family:'JetBrains Mono';color:#DDD;">
@@ -113,7 +113,6 @@
         width: 100%;
         height: 100%;
         box-sizing: border-box;
-        background-image: url("/images/gh-banners/www.png");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: left;
