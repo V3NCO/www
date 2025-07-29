@@ -85,6 +85,7 @@
                         "<p class='command'>links - show links to various platforms i'm on</p>",
                         "<p class='command'>friends - show links to friends websites</p>",
                         "<p class='command'>88x31 - alias of 'friends'</p>",
+                        "<p class='command'>projects - show the different projects from my GitHub'</p>"
                     ];
                     break;
                 case 'clear':
@@ -118,6 +119,27 @@
                     break;
                 case 'ls':
                     termHistory = [...termHistory, "<p class='command'>For some reason I have this weird reflex where everytime I'm in a terminal I type ls instantly</p>"];
+                    break;
+                case 'ls -la':
+                    termHistory = [
+                      ...termHistory,
+                      "<p class='command'>help</p>",
+                      "<p class='command'>clear</p>",
+                      "<p class='command'>keys</p>",
+                      "<p class='command'>links</p>",
+                      "<p class='command'>friends</p>",
+                      "<p class='command'>88x31</p>",
+                      "<p class='command'>projects</p>",
+                      "<p class='command'>hyfetch [color_scheme]</p>",
+                      "<p class='command'>vencord</p>",
+                      "<p class='command'>pronouns</p>",
+                      "<p class='command'>ls</p>",
+                      "<p class='command'>ls -la</p>",
+                      "<p class='command'>rm -fr /</p>",
+                      "<p class='command'>mobile</p>",
+                      "<p class='command'>awesome</p>",
+                      "<p class='command'>whoami</p>"
+                    ];
                     break;
                 case 'hyfetch':
                     termHistory.pop()
