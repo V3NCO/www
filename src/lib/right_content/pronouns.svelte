@@ -223,6 +223,8 @@
     .pronouns-container {
         margin: 2.5%;
         width: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
 
     .profile-section {

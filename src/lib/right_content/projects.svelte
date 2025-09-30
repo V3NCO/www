@@ -7,7 +7,7 @@
     let error = null;
     let langrepos = {};
     let ignoredRepos = ["wakana"];
-    
+
     const calculateLanguagePercentages = (languages: Record<string, number>) => {
         const total = Object.values(languages).reduce((sum: number, bytes: number) => sum + bytes, 0);
         return Object.entries(languages).map(([lang, bytes]) => ({
@@ -16,12 +16,12 @@
             color: getColor(lang)
         }));
     };
-    
-    
+
+
     const getColor = (language: string): string => {
         return colors[language] || "#DDD";
       };
-    
+
     onMount(async () => {
         try {
             const octokit = new Octokit();
@@ -96,7 +96,8 @@
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-        padding: 7.5px
+        padding: 7.5px;
+        overflow: scroll;
     }
 
     .repo_container {
@@ -105,7 +106,7 @@
         padding: 9px;
         box-sizing: border-box;
     }
-    
+
     .repo_box {
         position: relative;
         display: flex;
@@ -143,18 +144,18 @@
         line-height: 50px;
         color: white;
         background-color: var(--itemcolor);
-        height: 15px; 
-        min-height: 15px; 
+        height: 15px;
+        min-height: 15px;
     }
-    
+
     .bar-item:first-child {
         border-radius: 15px 0 0 15px;
     }
-    
+
     .bar-item:last-child {
         border-radius: 0 15px 15px 0;
     }
-    
+
     .bar-item:only-child {
         border-radius: 15px;
     }
@@ -166,7 +167,7 @@
         transform: translateY(-2px);
         box-shadow: 0 8px 25px rgba(150, 131, 236, 0.3);
     }
-    
+
     .gradient_overlay {
         position: absolute;
         top: 0;
@@ -182,7 +183,7 @@
         );
         z-index: 1;
     }
-    
+
     .repo_content {
         position: relative;
         z-index: 2;
@@ -193,18 +194,18 @@
         width: 100%;
         color: white;
     }
-    
+
     .repo_title {
         margin: 0 0 8px 0;
         font-size: 1.4rem;
         font-weight: 700;
-        text-shadow: 
+        text-shadow:
             0 2px 4px rgba(0, 0, 0, 0.8),
             0 4px 8px rgba(0, 0, 0, 0.4);
         letter-spacing: 0.5px;
         line-height: 1.2;
     }
-    
+
     .repo_description {
         margin: 0 0 12px 0;
         font-size: 0.95rem;
@@ -224,7 +225,7 @@
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.1);
     }
-    
+
     .repo_box .gradient_overlay {
         background: radial-gradient(
             ellipse at bottom left,

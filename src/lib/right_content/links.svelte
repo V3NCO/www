@@ -49,6 +49,7 @@
         gap: 10px;
         margin: 20px;
         width: calc(100% - 40px); /* Subtract the left and right margins */
+        overflow: hidden;
     }
     .link-item {
         display: flex;
