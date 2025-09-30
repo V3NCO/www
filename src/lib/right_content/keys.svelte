@@ -40,6 +40,22 @@
             </div>
         </span>
     </div>
+    <hr style="border: 1px solid #9683EC; margin: 10px 0; width: 100%; box-sizing: border-box;">
+    <div class="key-item" style="margin-top: 5px;">
+        <Keys_icon/>
+        <span style="font-weight: 250; font-size: 20px; display: flex; width: 100%; justify-content: space-between; align-items: flex-start;">
+            <div style="display: flex; flex-direction: column;">
+                <a href="/keys/ssh-stardust" target="_blank" style="color: hsl(210, 77%, 53%); text-decoration: none;">Stardust</a>
+                <span style="color: #FFFFFF; font-size: 16px; margin-top: 2px;">ecdsa-sha2-nistp256</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 4px;">
+                <span class="mactooltip">
+                    <LaptopBackup/>
+                </span>
+                <span style="color: #AAA; align-items: center">SSH</span>
+            </div>
+        </span>
+    </div>
 </div>
 
 <style>
@@ -119,6 +135,28 @@
 
     .laptooltip:hover::after {
         content: "Backed up on airgapped laptop";
+        position: absolute;
+        background: #292435d3;
+        outline-style: dashed;
+        outline-color: #9683EC;
+        outline-width: 2px;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 1px;
+        font-size: 12px;
+        white-space: nowrap;
+        top: -35px;
+        right: 0;
+        z-index: 1000;
+    }
+
+    .mactooltip {
+        position: relative;
+        cursor: help;
+    }
+
+    .mactooltip:hover::after {
+        content: "Using with Secretive on Macbook";
         position: absolute;
         background: #292435d3;
         outline-style: dashed;
