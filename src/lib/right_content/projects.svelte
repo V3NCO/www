@@ -57,7 +57,7 @@
         </p>
     {:else}
         {#each repos as repo}
-            {#if !ignoredRepos.includes(repo.name)}
+            {#if !ignoredRepos.includes(repo.name) && !repo.archived}
                 <div class="repo_container">
                     <a class="repo_box" href={repo.html_url} target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; background-image: url('/images/gh-banners/{repo.name.toLowerCase()}.png');">
                         <div class="gradient_overlay"></div>
