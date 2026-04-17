@@ -28,3 +28,4 @@ testfile
 #Workspace
 Website.code-workspace
 .wakatime-project
+.direnv
