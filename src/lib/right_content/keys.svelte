@@ -29,6 +29,25 @@
         <Keys_icon/>
         <span style="font-weight: 250; font-size: 20px; display: flex; width: 100%; justify-content: space-between; align-items: flex-start;">
             <div style="display: flex; flex-direction: column;">
+                <a href="/keys/gpg-padlock" target="_blank" style="color: hsl(210, 77%, 53%); text-decoration: none;">Esther &lt;esther@esther.tf&gt; (Padlock)</a>
+                <span style="color: #FFFFFF; font-size: 16px; margin-top: 2px;">E8EB3EA33C114CAE5A431E258CF9708A72E5A219</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 4px;">
+                <span class="saveyubitooltip">
+                    <Yubico_logo/>
+                </span>
+                <span class="laptooltip">
+                    <LaptopBackup/>
+                </span>
+                <span style="color: #AAA; align-items: center">GPG</span>
+            </div>
+        </span>
+    </div>
+    <hr style="border: 1px solid #9683EC; margin: 10px 0; width: 100%; box-sizing: border-box;">
+    <div class="key-item" style="margin-top: 5px;">
+        <Keys_icon/>
+        <span style="font-weight: 250; font-size: 20px; display: flex; width: 100%; justify-content: space-between; align-items: flex-start;">
+            <div style="display: flex; flex-direction: column;">
                 <a href="/keys/ssh-sentinel" target="_blank" style="color: hsl(210, 77%, 53%); text-decoration: none;">Sesame</a>
                 <span style="color: #FFFFFF; font-size: 16px; margin-top: 2px;">sk-ssh-ed25519@openssh.com</span>
             </div>
